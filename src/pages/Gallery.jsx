@@ -34,6 +34,18 @@ export default function Gallery() {
     setShowAdminLightbox(false);
   }, []);
 
+  const categories = useMemo(() => [
+    { id: "all", label: "All Images" },
+    { id: "construction", label: "Construction" },
+    { id: "design", label: "Design" },
+    { id: "completed", label: "Completed Projects" },
+  ], []);
+
+  const filteredImages = useMemo(() => 
+    selectedCategory === "all" ? adminImages : adminImages.filter((img) => img.category === selectedCategory),
+    [adminImages, selectedCategory]
+  );
+
   const adminLightboxImages = useMemo(() => 
     filteredImages.map((img) => img.src), 
   [filteredImages]);
@@ -41,15 +53,6 @@ export default function Gallery() {
   const adminLightboxAlts = useMemo(() => 
     filteredImages.map((img) => img.alt || img.title), 
   [filteredImages]);
-
-  const categories = [
-    { id: "all", label: "All Images" },
-    { id: "construction", label: "Construction" },
-    { id: "design", label: "Design" },
-    { id: "completed", label: "Completed Projects" },
-  ];
-
-  const filteredImages = selectedCategory === "all" ? adminImages : adminImages.filter((img) => img.category === selectedCategory);
 
   return (
     <main>

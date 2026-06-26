@@ -1,23 +1,30 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import Button from "../common/Button";
+import { ArrowRight } from "lucide-react";
 
 export default function ServicesCTA() {
   return (
-    <section className="bg-amber-500 dark:bg-amber-600 py-24 transition-colors duration-300">
-      <div className="max-w-5xl mx-auto px-4 text-center">
-        <h2 className="text-5xl font-bold text-white dark:text-slate-950 mb-6 transition-colors duration-300">
-          Ready to Build Your Vision?
-        </h2>
-
-        <p className="text-white/90 dark:text-slate-900 text-lg mb-8 transition-colors duration-300">
-          Let's discuss your next project and how our expert services can bring it to life.
-        </p>
-
-        <Link to="/contact">
-          <Button variant="secondary" className="!bg-white dark:!bg-slate-950 !text-slate-900 dark:!text-white hover:!bg-slate-100 dark:hover:!bg-slate-800">
-            Get a Free Consultation
+    <section className="py-24 bg-secondary text-secondary-foreground">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="bg-card rounded-3xl p-10 lg:p-16 text-center shadow-2xl border border-border"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            Ready to Start Your Project?
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+            Our team of experts is ready to listen to your ideas and turn them into a concrete plan. Let's discuss how we can bring your vision to life.
+          </p>
+          <Button as={Link} to="/contact" variant="primary" size="lg">
+            Contact Our Team
+            <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-        </Link>
+        </motion.div>
       </div>
     </section>
   );
